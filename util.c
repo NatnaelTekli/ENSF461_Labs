@@ -59,3 +59,19 @@ float compute_average(int* line) {
 
     return (float)(sum / count);
 }
+
+float compute_stdev(int* line) {
+    int count = line[0];
+    if (count <= 0) {
+        return 0.0f;
+    }
+
+    float mean = compute_average(line);
+    float sum_sq = 0.0f;
+    for (int i = 1; i <= count; ++i) {
+        float d = line[i] - mean;
+        sum_sq += d * d;
+    }
+
+    return sqrtf(sum_sq / count);
+}
